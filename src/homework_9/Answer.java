@@ -11,7 +11,7 @@ public class Answer {
         this.checkStudentAnswer = checkAnswer;
     }
 
-    public static void printAnswer(Answer answer) {
+    protected void printAnswer(Answer answer) {
         System.out.printf(" %d. %s\n", answer.number, answer.answer);
         }
 

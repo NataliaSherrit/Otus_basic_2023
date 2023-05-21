@@ -1,15 +1,17 @@
 package homework_9;
 
 
-import java.util.Scanner;
-
 public class Test {
     static int correctCount = 0;
     static int wrongCount = 0;
-    static Scanner answer = new Scanner(System.in);
+
     public static void main(String[] args) {
+        passTest();
+        System.out.println("Резульаты тестирования: ");
+        System.out.println("Правильных ответов: " + correctCount + " Неправильных ответов: " + wrongCount);
 
-
+    }
+    private static void passTest() {
         Question question1 = new Question(1, "Кто автор комедии 'Горе от ума'?");
         question1.answers[0] = new Answer(1, "Грибоедов", true);
         question1.answers[1] = new Answer(2, "Пушкин", false);
@@ -27,20 +29,18 @@ public class Test {
         question3.answers[1] = new Answer(2, "Вольфганг Моцарт", false);
         question3.answers[2] = new Answer(3, "Эдвард Григ", true);
         question3.answers[3] = new Answer(4, "Ференц Лист", false);
-
-
         var questions = new Question[] {question1, question2, question3};
         for (Question question : questions) {
-            Question.printQuestion(question);
-            int studentAnswer = answer.nextInt();
-            if (question.isStudentAnswerCorrect(studentAnswer))
+            boolean result = question.askQuestionAndVerifyResult(question);
+            if (result) {
                 ++correctCount;
-            else
+                System.out.println("Ответ верный");
+            }
+            else {
                 ++wrongCount;
+                System.out.println("Ответ неверный");
+            }
         }
-        System.out.println("Резульаты тестирования: ");
-        System.out.println("Правильных ответов: " + correctCount + " Неправильных ответов: " + wrongCount);
-
     }
 }
 
