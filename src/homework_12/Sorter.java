@@ -5,25 +5,25 @@ import java.util.*;
 public class Sorter {
 
     public static void main(String[] args) {
-        Integer [] arrayForSort = new Integer[100];
-        Integer [] arrayForList = new Integer[100];
+        Integer [] arrayForSort = new Integer[10000];
+        Integer [] arrayForList = new Integer[10000];
         Random random = new Random();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10000; i++) {
             arrayForSort[i] = random.nextInt(100);
             arrayForList[i] = random.nextInt(100);
         }
         List <Integer> listForSort = Arrays.asList(arrayForList);
         System.out.println(listForSort);
-        long startTimeSort = System.nanoTime();
+        long startTimeSort = System.currentTimeMillis();
         Collections.sort(listForSort);
-        long resultTimeSort = System.nanoTime() - startTimeSort;
+        long resultTimeSort = System.currentTimeMillis() - startTimeSort;
         System.out.println(resultTimeSort);
 
         System.out.println(Arrays.toString(arrayForSort));
-        long startTimeBubble = System.nanoTime();
+        long startTimeBubble = System.currentTimeMillis();
         bubbleSort(arrayForSort);
-        long resultTimeBubble = System.nanoTime() - startTimeBubble;
+        long resultTimeBubble = System.currentTimeMillis() - startTimeBubble;
         System.out.println(resultTimeBubble);
     }
 
