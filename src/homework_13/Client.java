@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Client {
     private final String name;
-    private int age;
+    private final int age;
 
     public Client(String name, int age) {
         this.name = name;
