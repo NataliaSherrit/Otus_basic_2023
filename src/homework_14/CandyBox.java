@@ -1,9 +1,10 @@
 package homework_14;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 
-public class CandyBox {
+public class CandyBox  implements AutoCloseable {
     private int presentsCount;
 
     public CandyBox setPresentsCount(int presentsCount) {
@@ -28,8 +29,8 @@ public class CandyBox {
         return Objects.hash(presentsCount);
     }
 
-    // заглушка для блока finally - имитация очистки временного хранилища (закрытия коннекта)
-    public static void wrapUpBox (int presentsCount) {
+    @Override
+    public void close() throws Exception {
         System.out.println("Коробка запакована с " + presentsCount + " подарков и удалена из временного хранилища");
     }
 }

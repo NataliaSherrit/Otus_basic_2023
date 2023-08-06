@@ -2,11 +2,13 @@ package homework_14;
 
 import java.util.Scanner;
 
-public class presentsCalculator {
+import static homework_14.CandyBox.*;
+
+public class PresentsCalculator {
     private static int childrenCount;
     private static int presentsCount;
 
-    public static void main(String[] args) throws PresentException {
+    public static void main(String[] args) throws Exception {
         int result;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите количество подарков: ");
@@ -14,16 +16,15 @@ public class presentsCalculator {
         System.out.println("Введите количество детей: ");
         childrenCount = scanner.nextInt();
         if (childrenCount == 0) {
-            throw new NullPointerException("Детей не может быть 0");
+            throw new IllegalArgumentException("Детей не может быть 0");
         } else {
             result = getPresentsCountForOneChild(childrenCount, presentsCount);
             getPresentBox(result);
         }
 
     }
-    private static CandyBox getPresentBox (int count) {
-        CandyBox candyBox = new CandyBox(0);
-        try {
+    private static CandyBox getPresentBox (int count) throws Exception {
+        try (CandyBox candyBox = new CandyBox(0);){
             candyBox.setPresentsCount(count);
             if (count ==0) {
                 throw new NullPointerException();
@@ -31,10 +32,7 @@ public class presentsCalculator {
         } catch (NullPointerException e) {
             System.out.println("Нельзя подарить детям 0 подарков");
         }
-        finally {
-            CandyBox.wrapUpBox(count);
-        }
-        return  candyBox.setPresentsCount(count);
+        return new CandyBox(count);
     }
 
     private static int getPresentsCountForOneChild (int childrenCount, int presentsCount ) throws PresentException {
