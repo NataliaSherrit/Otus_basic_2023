@@ -17,11 +17,4 @@ public class Game {
         winnerPrinter.printWinner(winner);
     }
 
-    // Добавлен тестовый вариант, чтобы можно было результат игры передавать в метод - для получения гарантированного ответа от программы
-    public String playTestGame(Player player1, Player player2, int player1Result, int player2Result) {
-        Player winner = (player1Result > player2Result)? player1: player2;
-        winnerPrinter.printWinner(winner);
-        return winner.getName();
-    }
-
 }
