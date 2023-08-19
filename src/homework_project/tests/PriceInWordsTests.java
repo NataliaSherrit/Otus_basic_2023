@@ -19,21 +19,19 @@ public class PriceInWordsTests {
 
     @Test
     void checkUnsupportedCurrency() {
-        Exception exception = Assertions.assertThrows(NoSuchCurrencyException.class, () -> {
-            converterValueToString.convert(Currency.getCurrency("бублики"), 5438990);
-        });
+        Exception exception = Assertions.assertThrows(NoSuchCurrencyException.class, () -> converterValueToString.convert(Currency.getCurrency("бублики"), 5438990));
         Assertions.assertTrue(exception.getMessage().contains("Данная валюта не поддердживается конвертером"));
     }
 
     @Test
     void checkPriceIsNotNull() {
-        Exception exception = Assertions.assertThrows(NullPointerException.class, () -> {converterValueToString.convert(Currency.getCurrency("рубль"), null);});
+        Exception exception = Assertions.assertThrows(NullPointerException.class, () -> converterValueToString.convert(Currency.getCurrency("рубль"), null));
         Assertions.assertTrue(exception.getMessage().contains("\"number\" is null"));
     }
 
     @Test
     void checkPriceIsNotNegative () {
-        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {converterValueToString.convert(Currency.getCurrency("рубль"), -653);});
+        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> converterValueToString.convert(Currency.getCurrency("рубль"), -653));
         Assertions.assertTrue(exception.getMessage().contains("Сумма не может быть меньше или равна 0"));
     }
     @Test
